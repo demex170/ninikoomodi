@@ -1,900 +1,1136 @@
-
 <!DOCTYPE html>
 <html lang="ka">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 
-<title>ერთი კითხვა ❤️</title>
+<meta name="viewport"
+      content="width=device-width,
+      initial-scale=1.0,
+      maximum-scale=1.0,
+      user-scalable=no,
+      viewport-fit=cover">
+
+<meta name="theme-color" content="#090609">
+
+<title>ერთი მნიშვნელოვანი კითხვა ♡</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet">
 
 <style>
+
 :root{
-    --bg:#09070a;
-    --card:#120d12;
-    --rose:#ff6f9d;
-    --rose2:#ff9abb;
+    --bg:#090609;
+    --card:#120b10;
+    --pink:#ff6f9f;
+    --pink2:#ff9fbe;
+    --red:#ff315d;
+    --gold:#e8c77b;
     --white:#fff8fb;
-    --muted:#bcaeb5;
-    --line:rgba(255,255,255,.10);
+    --muted:#c9b9c1;
 }
 
 *{
     box-sizing:border-box;
-    -webkit-tap-highlight-color:transparent;
+    margin:0;
+    padding:0;
 }
 
-html,body{
-    margin:0;
+html,
+body{
     width:100%;
     min-height:100%;
     background:var(--bg);
     color:var(--white);
     font-family:"Noto Sans Georgian",sans-serif;
-}
-
-body{
-    min-height:100svh;
     overflow-x:hidden;
 }
 
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    background:
-        radial-gradient(circle at 50% 20%,rgba(255,75,130,.12),transparent 32%),
-        radial-gradient(circle at 10% 90%,rgba(255,40,100,.07),transparent 28%);
-    z-index:-2;
+body{
+    min-height:100vh;
 }
 
-body::after{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    opacity:.035;
-    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
-    z-index:-1;
+button{
+    font-family:inherit;
+    -webkit-tap-highlight-color:transparent;
 }
 
-.page{
-    min-height:100svh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:25px 17px;
-}
-
-.container{
-    width:min(470px,100%);
-    text-align:center;
-}
-
-.top-label{
-    font-size:11px;
-    letter-spacing:4px;
-    text-transform:uppercase;
-    color:#9e8e96;
-    margin-bottom:18px;
-}
-
-/* VIDEO */
-
-.video-wrap{
-    width:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    margin-bottom:30px;
-}
-
-video{
-    /*
-       contain + auto height ნიშნავს, რომ ვიდეო
-       მთლიანად გამოჩნდება და არ მოიჭრება.
-    */
-    width:100%;
-    height:auto;
-    max-height:55vh;
-    object-fit:contain;
-
-    display:block;
-
-    background:#080608;
-
-    border-radius:22px;
-    border:1px solid var(--line);
-
-    box-shadow:
-        0 25px 70px rgba(0,0,0,.55),
-        0 0 45px rgba(255,70,125,.07);
-}
-
-/* QUESTION */
-
-.question-area{
+.app{
     position:relative;
-    padding:4px 0 10px;
+    min-height:100vh;
+    overflow:hidden;
 }
 
-.small-line{
-    color:#a99aa2;
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+.bg{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:0;
+}
+
+.bg::before{
+    content:"";
+    position:absolute;
+
+    width:420px;
+    height:420px;
+
+    border-radius:50%;
+
+    background:rgba(255,70,130,.10);
+
+    top:-160px;
+    left:-150px;
+}
+
+.bg::after{
+    content:"";
+    position:absolute;
+
+    width:380px;
+    height:380px;
+
+    border-radius:50%;
+
+    background:rgba(255,30,80,.08);
+
+    right:-150px;
+    bottom:-120px;
+}
+
+.star{
+    position:absolute;
+
+    width:3px;
+    height:3px;
+
+    background:#fff;
+
+    border-radius:50%;
+
+    opacity:.45;
+
+    animation:twinkle 3s infinite ease-in-out;
+}
+
+.star:nth-child(1){
+    left:12%;
+    top:18%;
+}
+
+.star:nth-child(2){
+    left:83%;
+    top:15%;
+    animation-delay:.8s;
+}
+
+.star:nth-child(3){
+    left:23%;
+    top:76%;
+    animation-delay:1.4s;
+}
+
+.star:nth-child(4){
+    left:74%;
+    top:67%;
+    animation-delay:2s;
+}
+
+.star:nth-child(5){
+    left:52%;
+    top:10%;
+    animation-delay:1s;
+}
+
+.star:nth-child(6){
+    left:91%;
+    top:47%;
+    animation-delay:2.4s;
+}
+
+@keyframes twinkle{
+
+    0%,
+    100%{
+        opacity:.2;
+        transform:scale(.7);
+    }
+
+    50%{
+        opacity:.9;
+        transform:scale(1.4);
+    }
+}
+
+
+/* =========================================
+   SCREENS
+========================================= */
+
+.screen{
+    position:absolute;
+
+    inset:0;
+
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:24px;
+
+    opacity:0;
+    visibility:hidden;
+
+    transform:translateY(25px) scale(.98);
+
+    transition:
+        opacity .65s ease,
+        transform .65s ease,
+        visibility .65s ease;
+
+    z-index:2;
+
+    overflow-y:auto;
+}
+
+.screen.active{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0) scale(1);
+}
+
+.content{
+    width:min(100%,680px);
+
+    text-align:center;
+
+    margin:auto;
+}
+
+
+/* =========================================
+   LABEL
+========================================= */
+
+.label{
+    display:inline-flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:8px;
+
+    padding:8px 14px;
+
+    border:1px solid rgba(255,159,190,.25);
+
+    border-radius:999px;
+
+    color:var(--pink2);
+
     font-size:12px;
-    margin-bottom:12px;
+
+    letter-spacing:.4px;
+
+    margin-bottom:25px;
+
+    background:rgba(255,255,255,.025);
+}
+
+
+/* =========================================
+   FIRST SCREEN
+========================================= */
+
+.big-heart{
+    font-size:52px;
+
+    margin-bottom:18px;
+
+    animation:heartbeat 2s infinite ease-in-out;
+}
+
+@keyframes heartbeat{
+
+    0%,
+    100%{
+        transform:scale(1);
+    }
+
+    15%{
+        transform:scale(1.1);
+    }
+
+    30%{
+        transform:scale(1);
+    }
+
+    45%{
+        transform:scale(1.06);
+    }
+}
+
+h1{
+    font-size:clamp(27px,7vw,52px);
+
+    line-height:1.35;
+
+    font-weight:800;
+
+    margin-bottom:17px;
+}
+
+.highlight{
+    color:var(--pink2);
 }
 
 .question{
-    margin:0 auto;
-    max-width:420px;
-    font-size:clamp(28px,7vw,40px);
-    line-height:1.28;
-    font-weight:700;
-    letter-spacing:-1px;
+    color:var(--muted);
+
+    font-size:clamp(14px,3.7vw,18px);
+
+    line-height:1.9;
+
+    max-width:580px;
+
+    margin:0 auto 32px;
 }
 
-.question span{
-    color:var(--rose2);
-}
 
-.subtext{
-    margin:13px auto 0;
-    color:#8f8189;
-    font-size:13px;
-    min-height:20px;
-
-    transition:
-        opacity .25s ease,
-        transform .25s ease;
-}
-
-/* BUTTONS */
+/* =========================================
+   BUTTONS
+========================================= */
 
 .buttons{
     position:relative;
-    min-height:190px;
-    margin-top:25px;
+
+    min-height:70px;
 
     display:flex;
-    align-items:center;
+
     justify-content:center;
-    gap:15px;
+
+    align-items:center;
+
+    gap:13px;
 }
 
 .btn{
     border:0;
-    font-family:inherit;
-    cursor:pointer;
-    touch-action:manipulation;
-    font-weight:700;
-
-    transition:
-        transform .45s cubic-bezier(.2,.9,.2,1),
-        width .55s cubic-bezier(.2,.9,.2,1),
-        height .55s cubic-bezier(.2,.9,.2,1),
-        box-shadow .55s ease;
-}
-
-/* KI */
-
-.yes{
-    width:145px;
-    height:58px;
 
     border-radius:18px;
 
-    color:#1a0910;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ffc0d4,
-            #ff6f9d
-        );
-
-    box-shadow:
-        0 12px 32px rgba(255,72,130,.25),
-        inset 0 1px 0 rgba(255,255,255,.65);
-
-    font-size:17px;
-
-    position:relative;
-    z-index:5;
-}
-
-.yes:active{
-    transform:scale(.96);
-}
-
-/* ARA */
-
-.no{
-    width:112px;
-    height:50px;
-
-    border-radius:15px;
-
-    background:#171117;
-    color:#c9bdc4;
-
-    border:1px solid rgba(255,255,255,.10);
-
-    font-size:14px;
-
-    position:relative;
-    z-index:10;
-}
-
-.no:active{
-    transform:scale(.94);
-}
-
-.counter{
-    margin-top:4px;
-    font-size:11px;
-    color:#695e65;
-    letter-spacing:1px;
-}
-
-/* SUCCESS SCREEN */
-
-.success{
-    position:fixed;
-    inset:0;
-
-    z-index:100;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    padding:22px;
-
-    background:#09070a;
-
-    opacity:0;
-    visibility:hidden;
-    pointer-events:none;
-
-    transform:scale(1.03);
-
-    transition:
-        opacity .55s ease,
-        visibility .55s ease,
-        transform .55s ease;
-}
-
-.success.show{
-    opacity:1;
-    visibility:visible;
-    pointer-events:auto;
-    transform:scale(1);
-}
-
-.success-content{
-    width:min(520px,100%);
-
-    text-align:center;
-
-    transform:
-        translateY(35px)
-        scale(.94);
-
-    transition:
-        transform .7s cubic-bezier(.2,.9,.2,1);
-}
-
-.success.show .success-content{
-    transform:
-        translateY(0)
-        scale(1);
-}
-
-/* SECOND VIDEO */
-
-.second-video-wrap{
-    width:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    margin-bottom:25px;
-}
-
-#video1{
-    width:100%;
-    height:auto;
-    max-height:60vh;
-
-    object-fit:contain;
-
-    display:block;
-
-    border-radius:22px;
-
-    background:#080608;
-
-    border:1px solid rgba(255,255,255,.10);
-
-    box-shadow:
-        0 25px 80px rgba(0,0,0,.65),
-        0 0 50px rgba(255,70,125,.10);
-}
-
-.success-title{
-    margin:0;
-
-    font-size:clamp(28px,8vw,44px);
-
-    line-height:1.22;
-
-    font-weight:800;
-
-    color:#fff8fb;
-}
-
-.success-title span{
-    color:var(--rose2);
-}
-
-.success-text{
-    margin:15px auto 0;
-
-    max-width:390px;
-
-    color:#b3a5ac;
+    padding:15px 27px;
 
     font-size:15px;
 
-    line-height:1.7;
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+
+    -webkit-user-select:none;
+    user-select:none;
 }
 
-/* SPARKLES */
-
-.spark{
-    position:fixed;
-
-    width:5px;
-    height:5px;
-
-    border-radius:50%;
-
-    background:#ff91b5;
-
-    pointer-events:none;
-
-    z-index:200;
-
-    animation:
-        fly 900ms ease-out forwards;
+.btn:active{
+    transform:scale(.95);
 }
 
-@keyframes fly{
+.yes{
+    background:linear-gradient(
+        135deg,
+        #ff5e91,
+        #ff2f62
+    );
 
-    from{
-        transform:
-            translate(0,0)
-            scale(1);
+    color:white;
 
-        opacity:1;
-    }
+    box-shadow:
+        0 14px 35px rgba(255,47,98,.25);
 
-    to{
-        transform:
-            translate(var(--x),var(--y))
-            scale(0);
-
-        opacity:0;
-    }
+    min-width:145px;
 }
 
-/* MOBILE */
+.yes:hover{
+    transform:translateY(-2px);
 
-@media(max-width:420px){
+    box-shadow:
+        0 18px 40px rgba(255,47,98,.35);
+}
 
-    .page{
-        padding:
-            20px 14px;
+.no{
+    background:#191017;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    color:#d8cbd1;
+
+    position:relative;
+}
+
+
+/* =========================================
+   WINDOWS
+========================================= */
+
+.window{
+    width:min(100%,620px);
+
+    padding:25px;
+
+    border:1px solid rgba(255,255,255,.10);
+
+    background:rgba(18,11,16,.96);
+
+    border-radius:28px;
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.45),
+        0 0 50px rgba(255,70,130,.06);
+}
+
+.window-title{
+    font-size:clamp(22px,6vw,35px);
+
+    line-height:1.45;
+
+    font-weight:800;
+
+    margin-bottom:20px;
+}
+
+
+/* =========================================
+   VIDEO
+========================================= */
+
+.video-box{
+    width:100%;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    background:#050305;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    margin-bottom:20px;
+}
+
+.video-box video{
+    width:100%;
+
+    height:auto;
+
+    display:block;
+
+    object-fit:contain;
+
+    background:#050305;
+}
+
+
+/* =========================================
+   TEXT
+========================================= */
+
+.text{
+    color:#ddd0d6;
+
+    line-height:2;
+
+    font-size:15px;
+
+    margin-bottom:22px;
+
+    white-space:normal;
+
+    overflow:visible;
+
+    height:auto;
+}
+
+
+/* =========================================
+   CONTINUE
+========================================= */
+
+.continue{
+    display:inline-flex;
+
+    align-items:center;
+    justify-content:center;
+
+    min-width:170px;
+
+    padding:14px 23px;
+
+    border:1px solid rgba(255,159,190,.3);
+
+    border-radius:16px;
+
+    background:linear-gradient(
+        135deg,
+        rgba(255,111,159,.16),
+        rgba(255,47,93,.08)
+    );
+
+    color:#fff;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    transition:.25s ease;
+}
+
+.continue:hover{
+    transform:translateY(-2px);
+
+    border-color:rgba(255,159,190,.55);
+}
+
+.continue:active{
+    transform:scale(.96);
+}
+
+
+/* =========================================
+   FINAL MESSAGE
+========================================= */
+
+.final-message{
+    color:#eee0e6;
+
+    font-size:clamp(15px,4vw,19px);
+
+    line-height:2.05;
+
+    margin:10px auto 25px;
+
+    max-width:600px;
+
+    white-space:normal;
+
+    overflow:visible;
+
+    height:auto;
+
+    max-height:none;
+
+    word-break:normal;
+
+    overflow-wrap:break-word;
+}
+
+.signature{
+    color:var(--pink2);
+
+    font-weight:700;
+
+    margin-top:22px;
+
+    font-size:14px;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:520px){
+
+    .screen{
+        padding:18px;
+
+        align-items:flex-start;
     }
 
-    .video-wrap{
-        margin-bottom:25px;
+    .content{
+        padding-top:35px;
+        padding-bottom:35px;
     }
 
-    video{
-        max-height:48vh;
-        border-radius:18px;
+    .big-heart{
+        font-size:45px;
     }
 
     .question{
-        font-size:28px;
+        line-height:1.8;
     }
 
     .buttons{
-        min-height:180px;
+        min-height:125px;
+
+        align-items:flex-start;
+
+        padding-top:10px;
     }
 
-    .yes{
-        width:150px;
-        height:60px;
+    .btn{
+        padding:15px 24px;
     }
 
-    .no{
-        width:108px;
+    .window{
+        padding:19px;
+
+        border-radius:23px;
     }
 
-    #video1{
-        max-height:55vh;
-        border-radius:18px;
+    .window-title{
+        font-size:22px;
+    }
+
+    .text{
+        font-size:14px;
+
+        line-height:1.9;
+    }
+
+    .final-message{
+        font-size:15px;
+
+        line-height:1.95;
+    }
+
+    .video-box{
+        border-radius:17px;
+    }
+
+    .video-box video{
+        width:100%;
+        height:auto;
+        max-height:none;
     }
 }
+
 </style>
 </head>
 
+
 <body>
 
-<!-- =========================================
-     FIRST SCREEN
-========================================= -->
+<div class="app">
 
-<main class="page">
+    <!-- BACKGROUND -->
 
-    <div class="container">
+    <div class="bg">
 
-        <div class="top-label">
-            ერთი პატარა კითხვა
-        </div>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
 
-        <div class="video-wrap">
+    </div>
 
-            <video
-                id="video"
-                src="video.mp4"
-                autoplay
-                muted
-                playsinline
-                preload="auto">
-            </video>
 
-        </div>
+    <!-- =====================================
+         SCREEN 1
+    ====================================== -->
 
-        <section class="question-area">
+    <section
+        class="screen active"
+        id="screen1">
 
-            <div class="small-line">
-                ახლა კი მთავარი...
+        <div class="content">
+
+            <div class="big-heart">
+                ♡
             </div>
 
-            <h1 class="question">
-                გახდები ჩემი
-                <span>შეყვარებული</span>?
+            <div class="label">
+                ✦ ერთი ძალიან მნიშვნელოვანი კითხვა
+            </div>
+
+            <h1>
+
+                ქალბატონო ნინო გიორგაძევ,
+
+                <span class="highlight">
+                    მე თქვენი მონა-მორჩილი
+                </span>
+
+                შეყვარებული დემეტრე ჟღენტი...
+
             </h1>
 
+            <p class="question">
+
+                გთხოვთ, დაფიქრდეთ ძალიან სერიოზულად...
+
+                <br>
+
+                გამომყვებით ცოლად?
+
+            </p>
+
+
             <div
-                class="subtext"
-                id="message">
-                მგონი პასუხი უკვე ვიცი... ❤️
+                class="buttons"
+                id="buttons">
+
+                <button
+                    class="btn yes"
+                    id="yesBtn">
+
+                    კი ♡
+
+                </button>
+
+
+                <button
+                    class="btn no"
+                    id="noBtn">
+
+                    არა
+
+                </button>
+
             </div>
 
-        </section>
+        </div>
 
-        <div
-            class="buttons"
-            id="buttons">
+    </section>
 
-            <button
-                class="btn yes"
-                id="yesBtn">
-                კი ❤️
-            </button>
 
-            <button
-                class="btn no"
-                id="noBtn">
-                არა
-            </button>
+    <!-- =====================================
+         SCREEN 2
+    ====================================== -->
+
+    <section
+        class="screen"
+        id="screen2">
+
+        <div class="content">
+
+            <div class="window">
+
+                <div class="label">
+                    ✓ გადაწყვეტილება მიღებულია
+                </div>
+
+
+                <h2 class="window-title">
+
+                    ქალბატონო ნინო...
+
+                    <br>
+
+                    ახლა ერთი პატარა დავალება გაქვთ 😌
+
+                </h2>
+
+
+                <div class="video-box">
+
+                    <video
+                        id="video1"
+                        src="video.mp4"
+                        autoplay
+                        muted
+                        loop
+                        playsinline
+                        preload="auto">
+                    </video>
+
+                </div>
+
+
+                <p class="text">
+
+                    შენს ქმარს უნდა ჩვენი საყვარელი
+                    ფოტოები, დაუყოვნებლივ ჩაუგდე
+                    ინსტაგრამზე! 😌❤️
+
+                </p>
+
+
+                <button
+                    class="continue"
+                    id="continueBtn">
+
+                    გაგრძელება →
+
+                </button>
+
+            </div>
 
         </div>
 
-        <div
-            class="counter"
-            id="counter">
-            ერთი პასუხი აირჩიე
+    </section>
+
+
+    <!-- =====================================
+         SCREEN 3
+    ====================================== -->
+
+    <section
+        class="screen"
+        id="screen3">
+
+        <div class="content">
+
+            <div class="window">
+
+                <div class="label">
+                    ♡ და ეს იყო სულ
+                </div>
+
+
+                <h2 class="window-title">
+
+                    სულ ეს იყო, მეუღლევ ❤️
+
+                </h2>
+
+
+                <p class="final-message">
+
+                    მიყვარხარ უზომოდ.
+
+                    <br>
+
+                    შენ ხარ ჩემი სიცოცხლე,
+                    ჩემი მოტივაცია,
+                    ჩემი სიყვარული,
+                    ჩემი დღის გათენება და დაღამება.
+
+                    <br><br>
+
+                    ხარ საუკეთესო ადამიანი,
+                    ვინც კი გამიცნია.
+
+                    <br><br>
+
+                    გპირდები, ვიქნები შენი ერთგული
+                    სიცოცხლის ბოლომდე.
+
+                </p>
+
+
+                <div class="video-box">
+
+                    <video
+                        id="video2"
+                        src="video1.mp4"
+                        autoplay
+                        muted
+                        loop
+                        playsinline
+                        preload="auto">
+                    </video>
+
+                </div>
+
+
+                <div class="signature">
+
+                    შენი დემეტრე ♡
+
+                </div>
+
+            </div>
+
         </div>
 
-    </div>
-
-</main>
-
-
-<!-- =========================================
-     SECOND SCREEN AFTER "KI"
-========================================= -->
-
-<div
-    class="success"
-    id="success">
-
-    <div class="success-content">
-
-        <div class="second-video-wrap">
-
-            <video
-                id="video1"
-                src="video1.mp4"
-                autoplay
-                playsinline
-                preload="auto">
-            </video>
-
-        </div>
-
-        <h2 class="success-title">
-            ჰაჰ, ასეც ვიცოდი <span>!!! ❤️</span>
-        </h2>
-
-        <p class="success-text">
-            როგორც იქნა, პასუხიც მივიღე. ❤️
-        </p>
-
-    </div>
+    </section>
 
 </div>
 
 
 <script>
 
-const yesBtn =
-    document.getElementById("yesBtn");
+/* =========================================
+   SCREEN SYSTEM
+========================================= */
 
-const noBtn =
-    document.getElementById("noBtn");
+const screens = {
 
-const message =
-    document.getElementById("message");
+    one:
+        document.getElementById("screen1"),
 
-const counter =
-    document.getElementById("counter");
+    two:
+        document.getElementById("screen2"),
 
-const success =
-    document.getElementById("success");
+    three:
+        document.getElementById("screen3")
 
-const video =
-    document.getElementById("video");
+};
+
+
+function showScreen(screen){
+
+    Object.values(screens).forEach(item => {
+
+        item.classList.remove("active");
+
+    });
+
+    screen.classList.add("active");
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================================
+   VIDEOS
+========================================= */
 
 const video1 =
     document.getElementById("video1");
 
+const video2 =
+    document.getElementById("video2");
 
-let noCount = 0;
 
+/*
+   ვიდეოს ავტომატური გაშვება.
+   muted საჭიროა იმისთვის, რომ
+   მობილურმა ბრაუზერმა autoplay არ დაბლოკოს.
+*/
 
-/* -----------------------------------------
-   ტექსტები ყოველი "არა"-სთვის
------------------------------------------ */
+function startVideo(video){
 
-const messages = [
+    if(!video) return;
 
-    "არ გინდა? კიდევ სცადე. ❤️",
+    video.currentTime = 0;
 
-    "კარგად დაფიქრდი...",
+    const promise = video.play();
 
-    "არა ნამდვილად? 🥹",
+    if(promise !== undefined){
 
-    "მგონი უბრალოდ მაწვალებ...",
+        promise.catch(() => {
+            // ბრაუზერმა autoplay დაბლოკა.
+            // მომხმარებლის შემდეგი მოქმედება
+            // ხელახლა შეეცდება გაშვებას.
+        });
 
-    "კი-ს ღილაკი უფრო მოგწონს, არა? 😌",
-
-    "კიდევ ერთხელ დაფიქრდი ❤️",
-
-    "უკვე ძალიან დიდი გახდა...",
-
-    "კი მაინც გელოდება.",
-
-    "ბოლო შანსი...",
-
-    "კარგი, მაგრამ პასუხი მაინც ვიცი 😭"
-
-];
-
-
-const counterTexts = [
-
-    "პირველი მცდელობა",
-
-    "კიდევ ერთხელ",
-
-    "კიდევ ფიქრობ?",
-
-    "ნამდვილად არა?",
-
-    "კი იზრდება...",
-
-    "უკვე დიდია",
-
-    "ძალიან დიდია",
-
-    "თითქმის მთელ სივრცეს იკავებს",
-
-    "კიდევ ერთი არა?",
-
-    "კარგი... 😭"
-
-];
-
-
-/* -----------------------------------------
-   KI-ს ზომის გაზრდა
-
-   ახლა ბევრად სწრაფად იზრდება.
-   მაქსიმუმი ეკრანის ~78%-ია,
-   ამიტომ მთელ ეკრანს არ დაფარავს.
------------------------------------------ */
-
-function updateYesSize(){
-
-    const maxWidth =
-        Math.min(
-            window.innerWidth * 0.78,
-            420
-        );
-
-    const maxHeight = 125;
-
-    const width =
-        Math.min(
-            145 + noCount * 42,
-            maxWidth
-        );
-
-    const height =
-        Math.min(
-            58 + noCount * 10,
-            maxHeight
-        );
-
-    const fontSize =
-        Math.min(
-            17 + noCount * 2.2,
-            28
-        );
-
-    yesBtn.style.width =
-        width + "px";
-
-    yesBtn.style.height =
-        height + "px";
-
-    yesBtn.style.fontSize =
-        fontSize + "px";
-
-    yesBtn.style.boxShadow =
-        `
-        0 ${12 + noCount * 3}px
-        ${32 + noCount * 5}px
-        rgba(255,72,130,.35),
-        inset 0 1px 0
-        rgba(255,255,255,.65)
-        `;
-}
-
-
-/* -----------------------------------------
-   ტექსტის შეცვლა
------------------------------------------ */
-
-function animateMessage(text){
-
-    message.style.opacity = "0";
-
-    message.style.transform =
-        "translateY(6px)";
-
-    setTimeout(() => {
-
-        message.textContent = text;
-
-        message.style.opacity = "1";
-
-        message.style.transform =
-            "translateY(0)";
-
-    },180);
-}
-
-
-/* -----------------------------------------
-   პატარა გულების ეფექტი
------------------------------------------ */
-
-function createSparkles(){
-
-    for(let i=0;i<20;i++){
-
-        const spark =
-            document.createElement("div");
-
-        spark.className =
-            "spark";
-
-        spark.style.left =
-            "50%";
-
-        spark.style.top =
-            "50%";
-
-        spark.style.setProperty(
-            "--x",
-            `${(Math.random()-.5) *
-            window.innerWidth}px`
-        );
-
-        spark.style.setProperty(
-            "--y",
-            `${(Math.random()-.5) *
-            window.innerHeight}px`
-        );
-
-        document.body.appendChild(spark);
-
-        setTimeout(() => {
-
-            spark.remove();
-
-        },950);
     }
+
 }
 
 
-/* -----------------------------------------
-   "არა"
------------------------------------------ */
+/* =========================================
+   YES
+========================================= */
+
+document
+    .getElementById("yesBtn")
+    .addEventListener("click", () => {
+
+        showScreen(screens.two);
+
+        startVideo(video1);
+
+    });
+
+
+/* =========================================
+   CONTINUE
+========================================= */
+
+document
+    .getElementById("continueBtn")
+    .addEventListener("click", () => {
+
+        if(video1){
+            video1.pause();
+        }
+
+        showScreen(screens.three);
+
+        startVideo(video2);
+
+    });
+
+
+/* =========================================
+   RUNNING "NO"
+========================================= */
+
+const noBtn =
+    document.getElementById("noBtn");
+
+const buttons =
+    document.getElementById("buttons");
+
+let noMoves = 0;
+
+
+function moveNoButton(){
+
+    noMoves++;
+
+    const area =
+        buttons.getBoundingClientRect();
+
+    const btn =
+        noBtn.getBoundingClientRect();
+
+
+    const maxX =
+        Math.max(
+            10,
+            area.width - btn.width - 10
+        );
+
+
+    const maxY =
+        Math.max(
+            10,
+            area.height - btn.height - 10
+        );
+
+
+    const x =
+        Math.random() * maxX;
+
+
+    const y =
+        Math.random() * maxY;
+
+
+    noBtn.style.position =
+        "absolute";
+
+    noBtn.style.left =
+        `${x}px`;
+
+    noBtn.style.top =
+        `${y}px`;
+
+
+    if(noMoves >= 3){
+
+        noBtn.textContent =
+            "არა 😭";
+
+    }
+
+
+    if(noMoves >= 6){
+
+        noBtn.textContent =
+            "ვერ გაიქცევი 😌";
+
+    }
+
+}
+
+
+/* Desktop */
+
+noBtn.addEventListener(
+    "mouseenter",
+    moveNoButton
+);
+
+
+/* Mobile */
+
+noBtn.addEventListener(
+    "touchstart",
+    function(e){
+
+        e.preventDefault();
+
+        moveNoButton();
+
+    },
+    {
+        passive:false
+    }
+);
+
+
+/* Click */
 
 noBtn.addEventListener(
     "click",
+    function(e){
+
+        e.preventDefault();
+
+        moveNoButton();
+
+    }
+);
+
+
+/* =========================================
+   VIDEO SAFETY
+========================================= */
+
+document.addEventListener(
+    "visibilitychange",
     () => {
 
-        noCount++;
+        if(document.hidden){
 
-        updateYesSize();
+            if(video1)
+                video1.pause();
 
-        const index =
-            Math.min(
-                noCount - 1,
-                messages.length - 1
-            );
+            if(video2)
+                video2.pause();
 
-        animateMessage(
-            messages[index]
-        );
+        }else{
 
-        counter.textContent =
-            counterTexts[
-                Math.min(
-                    noCount - 1,
-                    counterTexts.length - 1
-                )
-            ];
-
-
-        /*
-           არა-ს პატარა playful მოძრაობა
-        */
-
-        noBtn.animate(
-
-            [
-                {
-                    transform:
-                        "translateX(0)"
-                },
-
-                {
-                    transform:
-                        "translateX(-6px)"
-                },
-
-                {
-                    transform:
-                        "translateX(6px)"
-                },
-
-                {
-                    transform:
-                        "translateX(0)"
-                }
-            ],
-
-            {
-                duration:360,
-                easing:"ease-out"
-            }
-
-        );
-
-
-        /*
-           ბევრჯერ "არა"-ს დაჭერის შემდეგ
-           ღილაკი ოდნავ მცირდება,
-           რათა "კი" ვიზუალურად დომინანტური გახდეს.
-        */
-
-        if(noCount >= 6){
-
-            const scale =
-                Math.max(
-                    .84,
-                    1 - (noCount - 6) * .025
+            const currentScreen =
+                document.querySelector(
+                    ".screen.active"
                 );
 
-            noBtn.style.transform =
-                `scale(${scale})`;
+            if(
+                currentScreen &&
+                currentScreen.id === "screen2"
+            ){
+
+                startVideo(video1);
+
+            }
+
+            if(
+                currentScreen &&
+                currentScreen.id === "screen3"
+            ){
+
+                startVideo(video2);
+
+            }
+
         }
 
     }
 );
 
 
-/* -----------------------------------------
-   "კი"
------------------------------------------ */
-
-yesBtn.addEventListener(
-    "click",
-    () => {
-
-        createSparkles();
-
-        /*
-           პირველი ვიდეო ჩერდება
-        */
-
-        video.pause();
-
-        /*
-           ახალი ეკრანი იხსნება
-        */
-
-        success.classList.add("show");
-
-        /*
-           მეორე ვიდეო თავიდან იწყებს
-           დაკვრას
-        */
-
-        video1.currentTime = 0;
-
-        video1.play().catch(() => {});
-
-    }
-);
-
-
-/* -----------------------------------------
-   პირველი ვიდეო:
-   დასრულების შემდეგ თავიდან
------------------------------------------ */
-
-video.addEventListener(
-    "ended",
-    () => {
-
-        video.currentTime = 0;
-
-        video.play().catch(() => {});
-
-    }
-);
-
-
-/* -----------------------------------------
-   მეორე ვიდეო:
-   დასრულების შემდეგ თავიდან
------------------------------------------ */
+/* =========================================
+   ENSURE LOOP
+========================================= */
 
 video1.addEventListener(
     "ended",
@@ -902,44 +1138,19 @@ video1.addEventListener(
 
         video1.currentTime = 0;
 
-        video1.play().catch(() => {});
+        startVideo(video1);
 
     }
 );
 
 
-/* -----------------------------------------
-   გვერდის ჩატვირთვისას
------------------------------------------ */
-
-window.addEventListener(
-    "load",
+video2.addEventListener(
+    "ended",
     () => {
 
-        video.play().catch(() => {});
+        video2.currentTime = 0;
 
-        /*
-           მეორე ვიდეო თავიდან დამალულია,
-           ამიტომ აქ არ ვრთავთ.
-        */
-
-    }
-);
-
-
-/* -----------------------------------------
-   ეკრანის ზომის ცვლილება
------------------------------------------ */
-
-window.addEventListener(
-    "resize",
-    () => {
-
-        if(noCount > 0){
-
-            updateYesSize();
-
-        }
+        startVideo(video2);
 
     }
 );
